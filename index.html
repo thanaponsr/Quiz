@@ -6,18 +6,39 @@
         <meta http-equiv="x-ua-compatible" content="ie=edge">
         <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
         <link rel="stylesheet" href="css/styles.css">
+        <title>Sample Quiz</title>
     </head>
 
     <body>
-        <h1>This is a Header</h1>
-        <p>This is a paragraph</p>
-        <p>This is a second paragraph</p>
+        <!---TRIGGER LOGO--->
+        <div class="container">
+            <div class="row row-header align-items-center">
+                <div class="col-12 col-md-3">
+                    <img class="mx-auto d-block" src="triggerLogo.png" width="150" alt="">
+                </div>
+                <div class="col-12 col-md-auto text-center">
+                    <h1>Welcome to the Vocabulary Exercise</h1>
+                </div>
+            </div>
+        </div>
 
+        <!---START BUTTON-->
+        <button class="btn-new">Start Quiz</button>
 
+        <div class="container">
+            <div class="quiz-container">
+                <div id="quiz"></div>
+            </div>
+        </div>
+        <button id="previous">Previous Question</button>
+        <button id="next">Next Question</button>
+        <button id="submit">Submit Quiz</button>
+        <div id="results"></div>
 
 
         <script src="node_modules/jquery/dist/jquery.slim.min.js"></script>
         <script src="node_modules/popper.js/dist/umd/popper.min.js"></script>
         <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+        <script src="app.js"></script>
     </body>
 </html>
