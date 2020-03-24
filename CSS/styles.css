@@ -1,35 +1,68 @@
 .row-header {
     margin: 0px auto;
+    align-items: center;
     padding-top: 50px;
-    padding-bottom: 20px;
-    border-bottom: 3px ridge;
+    padding-bottom: 10px;
     color: #29338B; 
 }
 
-.navbar-brand {
-    padding-top: 5px;
+.row-content {
+  align-content: center;
+  margin-bottom: 20px;
+  padding-bottom: 20px;
+  border-bottom: 3px ridge;
+  color: #29338B;
 }
 
-button {
-    position: relative;
-    width: 200px;
-    left: 50%;
-    transform: translateX(-50%);
-    color: #555;
-    background: none;
-    border: none;
-    font-size: 30px;
-    text-transform: uppercase;
-    cursor: pointer;
-    font-weight: 600;
-    transition: background-color 0.3s, color 0.3s;
+.body {
+  padding: 5;
+  margin: 0;
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+  align-items: center;
+}
+
+.col-sm.btn-grid {
+  display: grid;
+  grid-template-columns: repeat(3, auto);
+  gap: 10px;
+  margin: 20px 0;
 }
 
 button:hover { font-weight: 900; }
 button:hover i { margin-right: 20px; }
 
+.btn.correct{
+--hue: var(--hue--correct);
+color: black
+}
+
+.btn.wrong {
+  --hue: var(--hue-wrong);
+}
+
+.start-btn, .next-btn {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
 button:focus {
     outline: none;
 }
 
-.btn-new { padding-top: 20px;}
+.controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.hide {
+  display: none;
+}
+
+.question-containter {
+  width: 800px;
+  max-width: 80%;
+}
+
