@@ -14,6 +14,7 @@
   color: #29338B;
 }
 
+
 .body {
   padding: 5;
   margin: 0;
@@ -21,6 +22,14 @@
   width: 100vw;
   height: 100vh;
   align-items: center;
+}
+
+body.correct {
+  background-color: #33cc33;
+}
+
+body.wrong {
+  background-color: #ff0000;
 }
 
 .col-sm.btn-grid {
@@ -34,12 +43,16 @@ button:hover { font-weight: 900; }
 button:hover i { margin-right: 20px; }
 
 .btn.correct{
---hue: var(--hue--correct);
-color: black
+  border: 5px;
+  border-color: #33cc33;
+}
+.btn.wrong {
+  border: 5px;
+  border-color: #ff0000;
 }
 
-.btn.wrong {
-  --hue: var(--hue-wrong);
+#answer-buttons {
+  margin-bottom: 10;
 }
 
 .start-btn, .next-btn {
