@@ -25,19 +25,19 @@ function setNextQuestion() {
 
 function showQuestion() {
   questionElement.innerText = question.question;
-  for (const answer of question.answers) {
+  question.forEach(item=>question.answers.forEach(ans => {
     const  button = document.createElement('img')
-      button.setAttribute("src", "./images/`${answer}`");
+      button.setAttribute("src", "./images/`${ans}`");
       button.setAttribute("width", "200");
-    button.classList.add('btn');
+      button.classList.add('btn');
     button.classList.add('img-fluid');
-    if (answer.correct) {
-      button.dataset.correct = answer.correct;
+    if (ans.correct) {
+      button.dataset.correct = ans.correct;
     }
     button.addEventListener('click', selectAnswer);
     answerButtonsElement.appendChild(button);
-
-  }
+  }));
+}
  
     //button.classList.add('btn')
     //if (answer.correct) {
@@ -51,7 +51,6 @@ function showQuestion() {
     <button class="btn"><img src="./images/${question[0].answers[2].choice}" class="img-fluid" width="200"></button>
   `
   answerButtonsElement.insertAdjacentHTML("afterbegin", newAns);*/
-}
 
 function resetState() {
   nextButton.classList.add('hide')
