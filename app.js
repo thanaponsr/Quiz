@@ -72,28 +72,21 @@ function selectAnswer(e) {
   const selectedButton = e.target;
   const correct = selectedButton.dataset.correct;
   setStatusClass(document.body, correct);
-  Array.from(answerButtonsElement.children).forEach(button => {
-    setStatusClass(button, button.dataset.correct)
-  })
-  /*if (shuffledQuestions.length > currentQuestionIndex + 1){
-    nextButton.classList.remove('hide');
-  } else{
-    startButton.classList.remove('hide');
-  }*/
-  
 };
 
 function setStatusClass(element, correct) {
   clearStatusClass(element)
-  if (correct && shuffledQuestions.length > currentQuestionIndex + 1) {
+  if (correct === 'true' && shuffledQuestions.length > currentQuestionIndex + 1) {
     element.classList.add('correct');
     nextButton.classList.remove('hide');
-  } else if (correct && shuffledQuestions.length == currentQuestionIndex + 1) {
+  } else if (correct === 'true' && shuffledQuestions.length == currentQuestionIndex + 1) {
     element.classList.add('correct');
     startButton.classList.remove('hide');
+    questionContainerElement.classList.add('hide');
+
   } else {
     element.classList.add('wrong');
-    resetState();
+    //resetState();
   }
 };
 
