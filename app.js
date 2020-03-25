@@ -5,7 +5,7 @@ const questionElement = document.getElementById('question');
 const answerButtonsElement = document.getElementById('answer-buttons');
 
 
-let shuffledQuestions, currentQuestionIndex;
+let shuffledQuestions, currentQuestionIndex, selectedQuestions, newQuestions;
 
 startButton.addEventListener('click', startGame)
 nextButton.addEventListener('click', () => {
@@ -16,11 +16,28 @@ nextButton.addEventListener('click', () => {
 function startGame() {
 
   startButton.classList.add('hide');
-  shuffledQuestions = question.sort(() => Math.random() - .5)
-  currentQuestionIndex = 0
+  randomQuestions();
+  shuffledQuestions = newQuestions;
+  currentQuestionIndex = 0;
   questionContainerElement.classList.remove('hide');
-  setNextQuestion()
-}
+  setNextQuestion();
+  console.log (shuffledQuestions);
+};
+
+function randomQuestions() {
+  newQuestions = [];
+  let i = 0;
+  while ( i <= 4) {
+    selectedQuestions = question[Math.floor(Math.random()*question.length)];
+    if (newQuestions.includes(selectedQuestions)) {
+      selectedQuestions = question[Math.floor(Math.random()*question.length)];  
+    } else {
+      newQuestions.push(selectedQuestions);
+    }
+    i++;
+  };
+  return newQuestions;
+};
 
 function setNextQuestion() {
   resetState()
@@ -28,8 +45,8 @@ function setNextQuestion() {
 }
 
 function showQuestion() {
-  questionElement.innerText = question[currentQuestionIndex].question;
-  question[currentQuestionIndex].answers.forEach(ans => {
+  questionElement.innerText = shuffledQuestions[currentQuestionIndex].question;
+  shuffledQuestions[currentQuestionIndex].answers.forEach(ans => {
     const  button = document.createElement('img')
       button.setAttribute("src", `images/${ans.choice}`);
       button.setAttribute("width", "200");
@@ -58,20 +75,22 @@ function selectAnswer(e) {
   Array.from(answerButtonsElement.children).forEach(button => {
     setStatusClass(button, button.dataset.correct)
   })
-  if (shuffledQuestions.length > currentQuestionIndex + 1){
+  /*if (shuffledQuestions.length > currentQuestionIndex + 1){
     nextButton.classList.remove('hide');
   } else{
     startButton.classList.remove('hide');
-  }
+  }*/
   
 };
 
 function setStatusClass(element, correct) {
   clearStatusClass(element)
-  if (correct) {
+  if (correct && shuffledQuestions.length > currentQuestionIndex + 1) {
     element.classList.add('correct');
-    setNextQuestion();
-
+    nextButton.classList.remove('hide');
+  } else if (correct && shuffledQuestions.length == currentQuestionIndex + 1) {
+    element.classList.add('correct');
+    startButton.classList.remove('hide');
   } else {
     element.classList.add('wrong');
     resetState();
@@ -128,6 +147,95 @@ const question= [
     ]
   },
 
+  {
+    question: 'LESS',
+    answers: [
+      {choice: 'little.jpg', correct: 'false'},
+      {choice: 'decrease.jpg', correct: 'true'},
+      {choice: 'increase.jpg', correct: 'false'}
+    ]
+  },
+
+  {
+    question: 'TEA',
+    answers: [
+      {choice: 'hotCoffee.jpg', correct: 'false'},
+      {choice: 'tea.jpg', correct: 'true'},
+      {choice: 'water.jpeg', correct: 'false'}
+    ]
+  },
+    
+  {
+    question: 'CHANGES',
+    answers: [
+      {choice: 'priceTag.jpg', correct: 'false'},
+      {choice: 'ice.jpg', correct: 'false'},
+      {choice: 'coins.jpg', correct: 'true'}
+    ]
+  },
+  
+  {
+    question: 'HOW MUCH',
+    answers: [
+      {choice: 'what.jpg', correct: 'false'},
+      {choice: 'dontKnow.jpg', correct: 'false'},
+      {choice: 'howMuch.jpg', correct: 'true'}
+    ] 
+  },
+  
+  {
+    question: 'ต้องการ',
+    answers: [
+      {choice: 'wouldLikeEng.jpg', correct: 'true'},
+      {choice: 'howMuchEng.jpg', correct: 'false'},
+      {choice: 'whereEng.jpg', correct: 'false'}
+    ]    
+  },
+
+  {
+    question: 'นิดเดียว',
+    answers: [
+      {choice: 'moreEng.jpg', correct: 'false'},
+      {choice: 'littleEng.jpg', correct: 'true'},
+      {choice: 'muchEng.jpg', correct: 'false'}
+    ]
+  },
+  
+  {
+    question: 'ICED COFFEE',
+    answers: [
+      {choice: 'hotCoffee.jpg', correct:'false'},
+      {choice: 'priceTag.jpg', correct: 'false'},
+      {choice: 'icedCoffee.jpg', correct: 'true'}
+    ]
+  },
+  
+  {
+    question: 'WATER',
+    answers: [
+      {choice: 'water.jpeg', correct: 'true'},
+      {choice: 'tea.jpg', correct: 'false'},
+      {choice: 'ice.jpg', correct: 'false'}
+    ]
+  },
+
+  {
+    question: 'MORE',
+    answers: [
+      {choice: 'little.jpg', correct: 'false'},
+      {choice: 'increase.jpg', correct: 'true'},
+      {choice: 'decrease.jpg', correct: 'false'}
+    ]
+  },
+  
+  {
+    question: 'หวาน',
+    answers: [
+      {choice: 'sweetEng.jpg', correct: 'true'},
+      {choice: 'bitterEng.jpg', correct: 'false'},
+      {choice: 'smallEng.jpg', correct: 'false'}
+    ]    
+  }
 ];
   
   
